@@ -86,6 +86,9 @@ enum class LogEvent : uint8_t {
     LAND_REPO_ACTIVE = 73,
     STANDBY_ENABLE = 74,
     STANDBY_DISABLE = 75,
+    
+    TRICK_START = 76,
+    TRICK_END = 77,
 
     SURFACED = 163,
     NOT_SURFACED = 164,
@@ -129,6 +132,7 @@ enum class LogErrorSubsystem : uint8_t {
     FAILSAFE_LEAK = 27,
     PILOT_INPUT = 28,
     FAILSAFE_VIBE = 29,
+    TRICK = 30,
 };
 
 // bizarrely this enumeration has lots of duplicate values, offering
@@ -158,7 +162,8 @@ enum class LogErrorCode : uint8_t {
     FAILED_CIRCLE_INIT = 4,
     DEST_OUTSIDE_FENCE = 5,
     RTL_MISSING_RNGFND = 6,
-
+//subsystem specific error codes -- trick
+    TRICK_UNKNOWN = 2,
 // parachute failed to deploy because of low altitude or landed
     PARACHUTE_TOO_LOW = 2,
     PARACHUTE_LANDED = 3,

@@ -704,6 +704,7 @@ bool AP_Mission::stored_in_location(uint16_t id)
     case MAV_CMD_NAV_VTOL_TAKEOFF:
     case MAV_CMD_NAV_VTOL_LAND:
     case MAV_CMD_NAV_PAYLOAD_PLACE:
+    case MAV_COMMAND_NAV_ACRO:
         return true;
     default:
         return false;
@@ -918,6 +919,11 @@ MAV_MISSION_RESULT AP_Mission::mavlink_int_to_mission_cmd(const mavlink_mission_
         cmd.content.nav_delay.min_utc = packet.param3;// absolute time's min (utc)
         cmd.content.nav_delay.sec_utc = packet.param4; // absolute time's second (utc)
         break;
+        
+    case MAV_COMMAND_NAV_ACRO: {
+    //param1 contiene la mia figura
+    uint16_t trick = packet.param1;
+}   break;
 
     case MAV_CMD_CONDITION_DELAY:                       // MAV ID: 112
         cmd.content.delay.seconds = packet.param1;      // delay in seconds
@@ -1357,6 +1363,10 @@ bool AP_Mission::mission_cmd_to_mavlink_int(const AP_Mission::Mission_Command& c
         packet.param2 = cmd.content.nav_delay.hour_utc; // absolute time's day of week (utc)
         packet.param3 = cmd.content.nav_delay.min_utc; // absolute time's hour (utc)
         packet.param4 = cmd.content.nav_delay.sec_utc; // absolute time's min (utc)
+        break;
+        
+    case MAV_COMMAND_NAV_ACRO:      //MAV ID 26
+        packet.param1 = cmd.p1;     //numero della figura
         break;
 
     case MAV_CMD_CONDITION_DELAY:                       // MAV ID: 112
@@ -2164,6 +2174,8 @@ const char *AP_Mission::Mission_Command::type() const
         return "LoitAltitude";
     case MAV_CMD_NAV_SET_YAW_SPEED:
         return "SetYawSpd";
+    case MAV_COMMAND_NAV_ACRO:
+        return "Acro";
     case MAV_CMD_CONDITION_DELAY:
         return "CondDelay";
     case MAV_CMD_CONDITION_DISTANCE:

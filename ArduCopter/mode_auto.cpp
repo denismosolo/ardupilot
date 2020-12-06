@@ -114,6 +114,10 @@ void ModeAuto::run()
     case Auto_NavPayloadPlace:
         payload_place_run();
         break;
+        
+    case Auto_Acro:
+        acro_run();
+        break;
     }
 }
 
@@ -355,6 +359,30 @@ void ModeAuto::nav_guided_start()
 }
 #endif //NAV_GUIDED
 
+void ModeAuto::acro_altitude_check(uint16_t& trick, //float& actual_altitude)
+{
+    float delta_altitude = copter.acro_nav->get_altitude_error(trick);
+   // if (actual_altitude < copter.acro_nav->min_altitude(trick)) {
+    if (delta_altitude > 200.0f) {
+        //set the state to move to the correct altitude
+        _mode = Auto_AcroReachAltitude;
+        
+        pos_control->shift_alt_target(delta_altitude);
+        
+        pos_control->update_z_controller();
+        
+    } else {
+        acro_start();
+}
+
+void ModeAuto::acro_start()
+{
+    _mode = Auto_Acro;
+    
+    //initialise acro controller -- in copter.h puntatore a acro_nav o similare
+    copter.acro_nav->init(); 
+}
+
 bool ModeAuto::is_landing() const
 {
     switch(_mode) {
@@ -446,6 +474,10 @@ bool ModeAuto::start_command(const AP_Mission::Mission_Command& cmd)
 
     case MAV_CMD_NAV_PAYLOAD_PLACE:              // 94 place at Waypoint
         do_payload_place(cmd);
+        break;
+        
+    case MAV_CMD_NAV_ACRO:
+        do_acro(cmd);
         break;
 
     //
@@ -685,8 +717,12 @@ bool ModeAuto::verify_command(const AP_Mission::Mission_Command& cmd)
         break;
 #endif
 
-     case MAV_CMD_NAV_DELAY:
+    case MAV_CMD_NAV_DELAY:
         cmd_complete = verify_nav_delay(cmd);
+        break;
+        
+    case MAV_CMD_NAV_ACRO:
+        cmd_complete = verify_acro(cmd);
         break;
 
     ///
@@ -969,6 +1005,15 @@ void ModeAuto::loiter_to_alt_run()
 
     pos_control->set_alt_target_from_climb_rate_ff(target_climb_rate, G_Dt, false);
     pos_control->update_z_controller();
+}
+
+void ModeAuto::acro_run()
+{
+    //set motors to full range
+    motors->set_desired_spool_state(AP_Motors::DesiredSpoolState::THROTTLE_UNLIMITED);
+   
+    //potrei usare una funzione che a seconda della figura chiama la giusta state machine definita in AC_Acro.h
+    copter.acro_nav->do_selected_figure();
 }
 
 // auto_payload_place_start - initialises controller to implement placement of a load
@@ -1377,6 +1422,14 @@ void ModeAuto::do_nav_delay(const AP_Mission::Mission_Command& cmd)
         nav_delay_time_max_ms = AP::rtc().get_time_utc(cmd.content.nav_delay.hour_utc, cmd.content.nav_delay.min_utc, cmd.content.nav_delay.sec_utc, 0);
     }
     gcs().send_text(MAV_SEVERITY_INFO, "Delaying %u sec", (unsigned)(nav_delay_time_max_ms/1000));
+}
+
+void ModeAuto::do_acro(const AP_Mission::Mission_Command& cmd)
+{
+    copter.acro_nav->set_fig_from_cmd(cmd.p1);
+    
+    //controllo dell'altitudine
+    acro_altitude_check(cmd.p1);
 }
 
 /********************************************************************************/
@@ -1899,6 +1952,19 @@ bool ModeAuto::verify_nav_delay(const AP_Mission::Mission_Command& cmd)
         return true;
     }
     return false;
+}
+
+bool ModeAuto::verify_acro(const AP_Mission::Mission_Command& cmd)
+{
+    //check if we reached the min altitude
+    if (mode() == Auto_AcroReachAltitude) {
+        if (copter.acro_nav->get_altitude_error(cmd.p1) < 200.0f) {
+            acro_start();   //rischia di passare a start mentre sta ancora andando il pos_controller
+        }
+        return false;
+    }
+    //check if we have completed the figure
+    return copter.acro_nav->trick_completed();  //condizione da stabilire
 }
 
 #endif

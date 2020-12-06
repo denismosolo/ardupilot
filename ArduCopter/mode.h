@@ -371,6 +371,7 @@ public:
     void spline_start(const Vector3f& destination, bool stopped_at_start, AC_WPNav::spline_segment_end_type seg_end_type, const Vector3f& next_spline_destination);
     void spline_start(const Location& destination, bool stopped_at_start, AC_WPNav::spline_segment_end_type seg_end_type, const Location& next_destination);
     void nav_guided_start();
+    void acro_start();
 
     bool is_landing() const override;
 
@@ -423,7 +424,8 @@ private:
     void nav_guided_run();
     void loiter_run();
     void loiter_to_alt_run();
-
+    void acro_run();
+    
     Location loc_from_cmd(const AP_Mission::Mission_Command& cmd) const;
 
     void payload_place_start(const Vector3f& destination);
@@ -449,6 +451,7 @@ private:
     void do_nav_guided_enable(const AP_Mission::Mission_Command& cmd);
     void do_guided_limits(const AP_Mission::Mission_Command& cmd);
 #endif
+    void do_acro(const AP_Mission::Mission_Command& cmd);
     void do_nav_delay(const AP_Mission::Mission_Command& cmd);
     void do_wait_delay(const AP_Mission::Mission_Command& cmd);
     void do_within_distance(const AP_Mission::Mission_Command& cmd);
@@ -483,6 +486,7 @@ private:
     bool verify_nav_guided_enable(const AP_Mission::Mission_Command& cmd);
 #endif
     bool verify_nav_delay(const AP_Mission::Mission_Command& cmd);
+    bool verify_acro(const AP_Mission::Mission_Command& cmd);
 
     // Loiter control
     uint16_t loiter_time_max;                // How long we should stay in Loiter Mode for mission scripting (time in seconds)
