@@ -371,6 +371,7 @@ public:
     void spline_start(const Vector3f& destination, bool stopped_at_start, AC_WPNav::spline_segment_end_type seg_end_type, const Vector3f& next_spline_destination);
     void spline_start(const Location& destination, bool stopped_at_start, AC_WPNav::spline_segment_end_type seg_end_type, const Location& next_destination);
     void nav_guided_start();
+    void acro_altitude_check(const uint16_t& trick);
     void acro_start();
 
     bool is_landing() const override;

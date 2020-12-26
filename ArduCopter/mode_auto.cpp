@@ -118,6 +118,10 @@ void ModeAuto::run()
     case Auto_Acro:
         acro_run();
         break;
+        
+    case Auto_AcroReachAltitude:
+        //WP_run(); update z controller?
+        break;
     }
 }
 
@@ -359,10 +363,9 @@ void ModeAuto::nav_guided_start()
 }
 #endif //NAV_GUIDED
 
-void ModeAuto::acro_altitude_check(uint16_t& trick, //float& actual_altitude)
+void ModeAuto::acro_altitude_check(const uint16_t& trick)
 {
-    float delta_altitude = copter.acro_nav->get_altitude_error(trick);
-   // if (actual_altitude < copter.acro_nav->min_altitude(trick)) {
+    float delta_altitude = copter.acro_nav->get_altitude_error();
     if (delta_altitude > 200.0f) {
         //set the state to move to the correct altitude
         _mode = Auto_AcroReachAltitude;
@@ -373,6 +376,7 @@ void ModeAuto::acro_altitude_check(uint16_t& trick, //float& actual_altitude)
         
     } else {
         acro_start();
+    }
 }
 
 void ModeAuto::acro_start()
@@ -1958,7 +1962,7 @@ bool ModeAuto::verify_acro(const AP_Mission::Mission_Command& cmd)
 {
     //check if we reached the min altitude
     if (mode() == Auto_AcroReachAltitude) {
-        if (copter.acro_nav->get_altitude_error(cmd.p1) < 200.0f) {
+        if (copter.acro_nav->get_altitude_error() < 200.0f) {
             acro_start();   //rischia di passare a start mentre sta ancora andando il pos_controller
         }
         return false;
