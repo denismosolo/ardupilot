@@ -792,6 +792,9 @@ MAV_MISSION_RESULT AP_Mission::sanity_check_params(const mavlink_mission_item_in
     case MAV_CMD_NAV_VTOL_LAND:
         nan_mask = ~((1 << 2) | (1 << 3)); // param 3 and 4 can be nan
         break;
+    case MAV_CMD_NAV_ACRO:
+        nan_mask = ~(1 << 0); //param 2 3 4 can be nan
+        break;
     default:
         nan_mask = 0xff;
         break;
@@ -920,9 +923,8 @@ MAV_MISSION_RESULT AP_Mission::mavlink_int_to_mission_cmd(const mavlink_mission_
         cmd.content.nav_delay.sec_utc = packet.param4; // absolute time's second (utc)
         break;
         
-    case MAV_CMD_NAV_ACRO:
-        //param1 contiene la mia figura
-        cmd.p1 = packet.param1;
+    case MAV_CMD_NAV_ACRO:                              //MAV ID: 26
+        cmd.p1 = fabsf(packet.param1);                  //contiene la mia figura
         break;
 
     case MAV_CMD_CONDITION_DELAY:                       // MAV ID: 112

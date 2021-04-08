@@ -20,7 +20,6 @@
 #define PWL_THR_INC             0.50f
 #define PWL_THR_DEC             0.55f   //verificare
 #define SPL_S_THR_INC           0.50f   //verificare
-#define AC_ACRO_TRICK_DEFAULT   0
 
 class AC_Acro  
 {
@@ -39,14 +38,14 @@ public:
     //float get_pitch() const;
     //float get_yaw() const;
     
-    void set_fig_from_cmd(uint16_t cmd_trick) {trick = cmd_trick;}
+    void set_fig_from_cmd(uint16_t cmd_trick) {_trick = cmd_trick;}
     //void get_correct_altitude(Vector3f &result, uint16_t trick);
     //float min_altitude(uint16_t trick);
     float get_altitude_error();
     void do_selected_figure();
     bool trick_completed() {return complete;}
     
- //   static const struct AP_Param::GroupInfo var_info[];
+    static const struct AP_Param::GroupInfo var_info[];
     
 private:
 
@@ -83,6 +82,9 @@ private:
     
     //GCS_Copter &gcs();
     
-    uint16_t trick; //const
+    //parameters
+    AP_Float _trick;
+    
+    uint16_t trick = _trick; //const
     bool complete;
 };

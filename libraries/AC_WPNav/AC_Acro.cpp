@@ -5,9 +5,11 @@
 #include <AP_Logger/AP_Logger.h>
 #include "AC_Acro.h"
 
-//extern const AP_HAL::HAL& hal;
+extern const AP_HAL::HAL& hal;
 
-/*const AP_Param::GroupInfo AC_Acro::var_info[] = {
+#define AC_ACRO_TRICK_DEFAULT 2
+
+const AP_Param::GroupInfo AC_Acro::var_info[] = {
     // @Param: TRICK
     // @DisplayName: Trick selector
     // @Description: Defines the trick to do 
@@ -15,10 +17,10 @@
     // @Range: 0 2
     // @Increment: 1
     // @User: Standard
-    AP_GROUPINFO("TRICK",  0,  AC_Acro, trick , AC_ACRO_TRICK_DEFAULT),
+    AP_GROUPINFO("TRICK",  0,  AC_Acro, _trick , AC_ACRO_TRICK_DEFAULT),
 
     AP_GROUPEND
-};*/
+};
 
 //default constructor
 AC_Acro::AC_Acro(const AP_InertialNav& inav, const AP_AHRS_View& ahrs, AC_PosControl& pos_control, const AP_Motors& motors, AC_AttitudeControl& attitude_control, const AP_Vehicle::MultiCopter&  aparm) :
@@ -29,7 +31,7 @@ AC_Acro::AC_Acro(const AP_InertialNav& inav, const AP_AHRS_View& ahrs, AC_PosCon
     _attitude_control(attitude_control),
     _aparm(aparm)
 {
-    //AP_Param::setup_object_defaults(this, var_info);
+    AP_Param::setup_object_defaults(this, var_info);
 }
 
 void AC_Acro::init()

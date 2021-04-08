@@ -197,7 +197,8 @@ public:
         k_param_attitude_control,
         k_param_pos_control,
         k_param_circle_nav,
-        k_param_loiter_nav,     // 105
+        k_param_loiter_nav,
+        k_param_acro_nav,     // 106
 
         // 110: Telemetry control
         //
