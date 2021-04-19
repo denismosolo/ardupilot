@@ -510,9 +510,9 @@ const AP_Param::Info Copter::var_info[] = {
     // @Path: ../libraries/AC_WPNav/AC_Loiter.cpp
     GOBJECTPTR(loiter_nav, "LOIT_", AC_Loiter),
     
-    // @Group: TRICK_
+ /*   // @Group: TRICK_
     //@Path: ../libraries/AC_WPNav/AC_Acro.cpp
-    GOBJECTPTR(acro_nav, "TRICK_", AC_Acro),
+   // GOBJECTPTR(acro_nav, "TRICK_", AC_Acro),*/
 
 #if MODE_CIRCLE_ENABLED == ENABLED
     // @Group: CIRCLE_

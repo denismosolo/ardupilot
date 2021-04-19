@@ -130,6 +130,7 @@ protected:
     ParametersG2 &g2;
     AC_WPNav *&wp_nav;
     AC_Loiter *&loiter_nav;
+    AC_Trick *&trick_nav;
     AC_PosControl *&pos_control;
     AP_InertialNav &inertial_nav;
     AP_AHRS &ahrs;
@@ -371,8 +372,8 @@ public:
     void spline_start(const Vector3f& destination, bool stopped_at_start, AC_WPNav::spline_segment_end_type seg_end_type, const Vector3f& next_spline_destination);
     void spline_start(const Location& destination, bool stopped_at_start, AC_WPNav::spline_segment_end_type seg_end_type, const Location& next_destination);
     void nav_guided_start();
-    void acro_altitude_check(const uint16_t& trick);
-    void acro_start();
+    //void acro_altitude_check(const uint16_t& trick);
+    void trick_start();
 
     bool is_landing() const override;
 
@@ -425,7 +426,7 @@ private:
     void nav_guided_run();
     void loiter_run();
     void loiter_to_alt_run();
-    void acro_run();
+    void trick_run();
     
     Location loc_from_cmd(const AP_Mission::Mission_Command& cmd) const;
 
@@ -452,7 +453,7 @@ private:
     void do_nav_guided_enable(const AP_Mission::Mission_Command& cmd);
     void do_guided_limits(const AP_Mission::Mission_Command& cmd);
 #endif
-    void do_acro(const AP_Mission::Mission_Command& cmd);
+    void do_trick(const AP_Mission::Mission_Command& cmd);
     void do_nav_delay(const AP_Mission::Mission_Command& cmd);
     void do_wait_delay(const AP_Mission::Mission_Command& cmd);
     void do_within_distance(const AP_Mission::Mission_Command& cmd);
@@ -487,7 +488,7 @@ private:
     bool verify_nav_guided_enable(const AP_Mission::Mission_Command& cmd);
 #endif
     bool verify_nav_delay(const AP_Mission::Mission_Command& cmd);
-    bool verify_acro(const AP_Mission::Mission_Command& cmd);
+    bool verify_trick(const AP_Mission::Mission_Command& cmd);
 
     // Loiter control
     uint16_t loiter_time_max;                // How long we should stay in Loiter Mode for mission scripting (time in seconds)

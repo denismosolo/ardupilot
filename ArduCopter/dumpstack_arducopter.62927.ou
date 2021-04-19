@@ -1,0 +1,164 @@
+[New LWP 62955]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+0x00007f76ea7fcdff in __GI___wait4 (pid=62967, stat_loc=stat_loc@entry=0x7ffd5cb9bc28, options=options@entry=0, usage=usage@entry=0x0) at ../sysdeps/unix/sysv/linux/wait4.c:27
+27	../sysdeps/unix/sysv/linux/wait4.c: File o directory non esistente.
+#0  0x00007f76ea7fcdff in __GI___wait4 (pid=62967, stat_loc=stat_loc@entry=0x7ffd5cb9bc28, options=options@entry=0, usage=usage@entry=0x0) at ../sysdeps/unix/sysv/linux/wait4.c:27
+        resultvar = 18446744073709551104
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+#1  0x00007f76ea7fcd7b in __GI___waitpid (pid=<optimized out>, stat_loc=stat_loc@entry=0x7ffd5cb9bc28, options=options@entry=0) at waitpid.c:38
+No locals.
+#2  0x00007f76ea76c0e7 in do_system (line=<optimized out>) at ../sysdeps/posix/system.c:172
+        __result = <optimized out>
+        _buffer = {__routine = 0x7f76ea76c290 <cancel_handler>, __arg = 0x7ffd5cb9bc30, __canceltype = 0, __prev = 0x0}
+        _avail = 1
+        cancel_args = {quit = 0x7f76ea905200 <quit>, intr = 0x7f76ea9052a0 <intr>, pid = 62967}
+        status = -1
+        ret = 0
+        pid = 62967
+        sa = {__sigaction_handler = {sa_handler = 0x1, sa_sigaction = 0x1}, sa_mask = {__val = {65536, 0 <repeats 15 times>}}, sa_flags = 0, sa_restorer = 0x0}
+        omask = {__val = {1024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 140726159130768, 140726159130867, 140726159130736, 140726159130867, 2676586395008836901, 2676586395008836901, 65280, 65280, 65280, 65280}}
+        reset = {__val = {6, 0 <repeats 15 times>}}
+        spawn_attr = {__flags = 12, __pgrp = 0, __sd = {__val = {6, 0 <repeats 15 times>}}, __ss = {__val = {1024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 140726159130768, 140726159130867, 140726159130736, 140726159130867, 2676586395008836901, 2676586395008836901, 65280, 65280, 65280, 65280}}, __sp = {sched_priority = 0}, __policy = 0, __pad = {0 <repeats 16 times>}}
+        __cnt = <optimized out>
+        __set = <optimized out>
+        __cnt = <optimized out>
+        __set = <optimized out>
+#3  0x0000562f54a6c3c2 in AP_HAL::dump_stack_trace() ()
+No symbol table info available.
+#4  0x0000562f54a6cdac in _sig_segv(int) ()
+No symbol table info available.
+#5  <signal handler called>
+No locals.
+#6  0x0000562f5493de55 in ModeAuto::start_command(AP_Mission::Mission_Command const&) ()
+No symbol table info available.
+#7  0x0000562f54993b43 in AP_Mission::advance_current_nav_cmd(unsigned short) [clone .part.0] ()
+No symbol table info available.
+#8  0x0000562f54996910 in AP_Mission::start_or_resume() ()
+No symbol table info available.
+#9  0x0000562f5493da8c in ModeAuto::init(bool) ()
+No symbol table info available.
+#10 0x0000562f5493a0ba in Copter::set_mode(Mode::Number, ModeReason) ()
+No symbol table info available.
+#11 0x0000562f549d080e in GCS_MAVLINK::_set_mode_common(MAV_MODE, unsigned int) ()
+No symbol table info available.
+#12 0x0000562f549d4322 in GCS_MAVLINK::handle_command_long_packet(__mavlink_command_long_t const&) ()
+No symbol table info available.
+#13 0x0000562f549d39b5 in GCS_MAVLINK::handle_command_long(__mavlink_message const&) ()
+No symbol table info available.
+#14 0x0000562f549d4bce in GCS_MAVLINK::handle_common_message(__mavlink_message const&) ()
+No symbol table info available.
+#15 0x0000562f5493143e in GCS_MAVLINK_Copter::handleMessage(__mavlink_message const&) ()
+No symbol table info available.
+#16 0x0000562f549cf791 in GCS_MAVLINK::update_receive(unsigned int) [clone .part.0] ()
+No symbol table info available.
+#17 0x0000562f549d80c6 in GCS::update_receive() ()
+No symbol table info available.
+#18 0x0000562f549afd71 in AP_Scheduler::run(unsigned int) ()
+No symbol table info available.
+#19 0x0000562f549b0870 in AP_Scheduler::loop() ()
+No symbol table info available.
+#20 0x0000562f549b4bf4 in AP_Vehicle::loop() ()
+No symbol table info available.
+#21 0x0000562f54a5c865 in HAL_SITL::run(int, char* const*, AP_HAL::HAL::Callbacks*) const ()
+No symbol table info available.
+#22 0x0000562f54927954 in main ()
+No symbol table info available.
+
+Thread 2 (Thread 0x7f76ea711700 (LWP 62955)):
+#0  0x00007f76ea7f73bf in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7f76ea710af0, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:78
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+        r = <optimized out>
+#1  0x00007f76ea7fd047 in __GI___nanosleep (requested_time=requested_time@entry=0x7f76ea710af0, remaining=remaining@entry=0x0) at nanosleep.c:27
+        ret = <optimized out>
+#2  0x00007f76ea82f9bf in usleep (useconds=<optimized out>) at ../sysdeps/posix/usleep.c:32
+        ts = {tv_sec = 0, tv_nsec = 1000000}
+#3  0x0000562f54a608aa in HALSITL::SITL_State::wait_clock(unsigned long) ()
+No symbol table info available.
+#4  0x0000562f54a6107c in HALSITL::Scheduler::delay(unsigned short) ()
+No symbol table info available.
+#5  0x0000562f54b23ef2 in GCS_MAVLINK::ftp_worker() ()
+No symbol table info available.
+#6  0x0000562f54b249bf in void Functor<void>::method_wrapper<GCS_MAVLINK, &GCS_MAVLINK::ftp_worker>(void*) ()
+No symbol table info available.
+#7  0x0000562f54a60b2b in HALSITL::Scheduler::thread_create_trampoline(void*) ()
+No symbol table info available.
+#8  0x00007f76ea912609 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140148716148480, 8910558528792329415, 140726159132542, 140726159132543, 94761306016288, 140148716146624, -8843524684449415993, -8843524958041899833}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007f76ea839293 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 1 (Thread 0x7f76ea712740 (LWP 62927)):
+#0  0x00007f76ea7fcdff in __GI___wait4 (pid=62967, stat_loc=stat_loc@entry=0x7ffd5cb9bc28, options=options@entry=0, usage=usage@entry=0x0) at ../sysdeps/unix/sysv/linux/wait4.c:27
+        resultvar = 18446744073709551104
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+#1  0x00007f76ea7fcd7b in __GI___waitpid (pid=<optimized out>, stat_loc=stat_loc@entry=0x7ffd5cb9bc28, options=options@entry=0) at waitpid.c:38
+No locals.
+#2  0x00007f76ea76c0e7 in do_system (line=<optimized out>) at ../sysdeps/posix/system.c:172
+        __result = <optimized out>
+        _buffer = {__routine = 0x7f76ea76c290 <cancel_handler>, __arg = 0x7ffd5cb9bc30, __canceltype = 0, __prev = 0x0}
+        _avail = 1
+        cancel_args = {quit = 0x7f76ea905200 <quit>, intr = 0x7f76ea9052a0 <intr>, pid = 62967}
+        status = -1
+        ret = 0
+        pid = 62967
+        sa = {__sigaction_handler = {sa_handler = 0x1, sa_sigaction = 0x1}, sa_mask = {__val = {65536, 0 <repeats 15 times>}}, sa_flags = 0, sa_restorer = 0x0}
+        omask = {__val = {1024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 140726159130768, 140726159130867, 140726159130736, 140726159130867, 2676586395008836901, 2676586395008836901, 65280, 65280, 65280, 65280}}
+        reset = {__val = {6, 0 <repeats 15 times>}}
+        spawn_attr = {__flags = 12, __pgrp = 0, __sd = {__val = {6, 0 <repeats 15 times>}}, __ss = {__val = {1024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 140726159130768, 140726159130867, 140726159130736, 140726159130867, 2676586395008836901, 2676586395008836901, 65280, 65280, 65280, 65280}}, __sp = {sched_priority = 0}, __policy = 0, __pad = {0 <repeats 16 times>}}
+        __cnt = <optimized out>
+        __set = <optimized out>
+        __cnt = <optimized out>
+        __set = <optimized out>
+#3  0x0000562f54a6c3c2 in AP_HAL::dump_stack_trace() ()
+No symbol table info available.
+#4  0x0000562f54a6cdac in _sig_segv(int) ()
+No symbol table info available.
+#5  <signal handler called>
+No locals.
+#6  0x0000562f5493de55 in ModeAuto::start_command(AP_Mission::Mission_Command const&) ()
+No symbol table info available.
+#7  0x0000562f54993b43 in AP_Mission::advance_current_nav_cmd(unsigned short) [clone .part.0] ()
+No symbol table info available.
+#8  0x0000562f54996910 in AP_Mission::start_or_resume() ()
+No symbol table info available.
+#9  0x0000562f5493da8c in ModeAuto::init(bool) ()
+No symbol table info available.
+#10 0x0000562f5493a0ba in Copter::set_mode(Mode::Number, ModeReason) ()
+No symbol table info available.
+#11 0x0000562f549d080e in GCS_MAVLINK::_set_mode_common(MAV_MODE, unsigned int) ()
+No symbol table info available.
+#12 0x0000562f549d4322 in GCS_MAVLINK::handle_command_long_packet(__mavlink_command_long_t const&) ()
+No symbol table info available.
+#13 0x0000562f549d39b5 in GCS_MAVLINK::handle_command_long(__mavlink_message const&) ()
+No symbol table info available.
+#14 0x0000562f549d4bce in GCS_MAVLINK::handle_common_message(__mavlink_message const&) ()
+No symbol table info available.
+#15 0x0000562f5493143e in GCS_MAVLINK_Copter::handleMessage(__mavlink_message const&) ()
+No symbol table info available.
+#16 0x0000562f549cf791 in GCS_MAVLINK::update_receive(unsigned int) [clone .part.0] ()
+No symbol table info available.
+#17 0x0000562f549d80c6 in GCS::update_receive() ()
+No symbol table info available.
+#18 0x0000562f549afd71 in AP_Scheduler::run(unsigned int) ()
+No symbol table info available.
+#19 0x0000562f549b0870 in AP_Scheduler::loop() ()
+No symbol table info available.
+#20 0x0000562f549b4bf4 in AP_Vehicle::loop() ()
+No symbol table info available.
+#21 0x0000562f54a5c865 in HAL_SITL::run(int, char* const*, AP_HAL::HAL::Callbacks*) const ()
+No symbol table info available.
+#22 0x0000562f54927954 in main ()
+No symbol table info available.
+A debugging session is active.
+
+	Inferior 1 [process 62927] will be detached.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
+[Inferior 1 (process 62927) detached]

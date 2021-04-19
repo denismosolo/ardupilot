@@ -115,13 +115,13 @@ void ModeAuto::run()
         payload_place_run();
         break;
         
-    case Auto_Acro:
-        acro_run();
+    case Auto_Trick:
+        trick_run();
         break;
         
-    case Auto_AcroReachAltitude:
-        //WP_run(); update z controller?
-        break;
+   /* case Auto_TrickReachAltitude:
+        wp_run(); //update z controller?
+        break;*/
     }
 }
 
@@ -363,7 +363,15 @@ void ModeAuto::nav_guided_start()
 }
 #endif //NAV_GUIDED
 
-void ModeAuto::acro_altitude_check(const uint16_t& trick)
+void ModeAuto::trick_start()
+{
+    _mode = Auto_Trick;
+    
+    //inizializzo il controller trick_nav
+    copter.trick_nav->init();   //se inizializzo qui la mia figura?
+}
+
+/*void ModeAuto::acro_altitude_check(const uint16_t& trick)
 {
     float delta_altitude = copter.acro_nav->get_altitude_error();
     if (delta_altitude > 200.0f) {
@@ -385,7 +393,7 @@ void ModeAuto::acro_start()
     
     //initialise acro controller -- in copter.h puntatore a acro_nav o similare
     copter.acro_nav->init(); 
-}
+}*/
 
 bool ModeAuto::is_landing() const
 {
@@ -461,6 +469,10 @@ bool ModeAuto::start_command(const AP_Mission::Mission_Command& cmd)
     case MAV_CMD_NAV_RETURN_TO_LAUNCH:             //20
         do_RTL();
         break;
+        
+    case MAV_CMD_NAV_TRICK:                     //26
+        do_trick(cmd);
+        break;
 
     case MAV_CMD_NAV_SPLINE_WAYPOINT:           // 82  Navigate to Waypoint using spline
         do_spline_wp(cmd);
@@ -480,9 +492,9 @@ bool ModeAuto::start_command(const AP_Mission::Mission_Command& cmd)
         do_payload_place(cmd);
         break;
         
-    case MAV_CMD_NAV_ACRO:
+/*    case MAV_CMD_NAV_ACRO:                      //26
         do_acro(cmd);
-        break;
+        break;*/
 
     //
     // conditional commands
@@ -725,8 +737,8 @@ bool ModeAuto::verify_command(const AP_Mission::Mission_Command& cmd)
         cmd_complete = verify_nav_delay(cmd);
         break;
         
-    case MAV_CMD_NAV_ACRO:
-        cmd_complete = verify_acro(cmd);
+    case MAV_CMD_NAV_TRICK:
+        cmd_complete = verify_trick(cmd);
         break;
 
     ///
@@ -1011,13 +1023,13 @@ void ModeAuto::loiter_to_alt_run()
     pos_control->update_z_controller();
 }
 
-void ModeAuto::acro_run()
+void ModeAuto::trick_run()
 {
     //set motors to full range
     motors->set_desired_spool_state(AP_Motors::DesiredSpoolState::THROTTLE_UNLIMITED);
    
     //potrei usare una funzione che a seconda della figura chiama la giusta state machine definita in AC_Acro.h
-    copter.acro_nav->do_selected_figure();
+    copter.trick_nav->do_selected_figure();
 }
 
 // auto_payload_place_start - initialises controller to implement placement of a load
@@ -1428,12 +1440,17 @@ void ModeAuto::do_nav_delay(const AP_Mission::Mission_Command& cmd)
     gcs().send_text(MAV_SEVERITY_INFO, "Delaying %u sec", (unsigned)(nav_delay_time_max_ms/1000));
 }
 
-void ModeAuto::do_acro(const AP_Mission::Mission_Command& cmd)
+void ModeAuto::do_trick(const AP_Mission::Mission_Command& cmd)
 {
-    copter.acro_nav->set_fig_from_cmd(cmd.p1);
+    do_loiter_unlimited(cmd);   //dovrebbe permettermi di raggiungere la posizione voluta    
+    
+    //uint16_t trick = cmd.p1;
+    //copter.trick_nav->set_fig_from_cmd(trick); //scrivi la figura da eseguire
+    
+    trick_start();
     
     //controllo dell'altitudine
-    acro_altitude_check(cmd.p1);
+   // acro_altitude_check(cmd.p1);
 }
 
 /********************************************************************************/
@@ -1958,7 +1975,17 @@ bool ModeAuto::verify_nav_delay(const AP_Mission::Mission_Command& cmd)
     return false;
 }
 
-bool ModeAuto::verify_acro(const AP_Mission::Mission_Command& cmd)
+bool ModeAuto::verify_trick(const AP_Mission::Mission_Command& cmd)
+{
+    //ritorna subito se non abbiamo ancora raggiunto la destinazione
+    if(!copter.wp_nav->reached_wp_destination()) {
+        return false;
+    }
+    
+    return copter.trick_nav->trick_completed();
+}
+
+/*bool ModeAuto::verify_acro(const AP_Mission::Mission_Command& cmd)
 {
     //check if we reached the min altitude
     if (mode() == Auto_AcroReachAltitude) {
@@ -1969,6 +1996,6 @@ bool ModeAuto::verify_acro(const AP_Mission::Mission_Command& cmd)
     }
     //check if we have completed the figure
     return copter.acro_nav->trick_completed();  //condizione da stabilire
-}
+}*/
 
 #endif

@@ -22,7 +22,7 @@ public:
     // The increment will prevent old parameters from being used incorrectly
     // by newer code.
     //
-    static const uint16_t        k_format_version = 120;
+    static const uint16_t        k_format_version = 121;
 
     // Parameter identities.
     //
@@ -198,7 +198,6 @@ public:
         k_param_pos_control,
         k_param_circle_nav,
         k_param_loiter_nav,
-        k_param_acro_nav,     // 106
 
         // 110: Telemetry control
         //
@@ -372,6 +371,7 @@ public:
         // 254,255: reserved
 
         k_param_vehicle = 257, // vehicle common block of parameters
+       // k_param_acro_nav = 270,     // 106
 
         // the k_param_* space is 9-bits in size
         // 511: reserved
@@ -462,6 +462,7 @@ public:
     AP_Float                acro_balance_pitch;
     AP_Int8                 acro_trainer;
     AP_Float                acro_rp_expo;
+    
 
     // Note: keep initializers here in the same order as they are declared
     // above.
