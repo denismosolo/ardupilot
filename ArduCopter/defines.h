@@ -97,7 +97,6 @@ enum AutoMode {
     Auto_LoiterToAlt,
     Auto_NavPayloadPlace,
     Auto_Trick,
-   // Auto_AcroReachAltitude,
 };
 
 // Guided modes

@@ -1,0 +1,320 @@
+[New LWP 18484]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+0x00007fe875b11dff in __GI___wait4 (pid=18654, stat_loc=stat_loc@entry=0x7ffc00eed008, options=options@entry=0, usage=usage@entry=0x0) at ../sysdeps/unix/sysv/linux/wait4.c:27
+27	../sysdeps/unix/sysv/linux/wait4.c: File o directory non esistente.
+#0  0x00007fe875b11dff in __GI___wait4 (pid=18654, stat_loc=stat_loc@entry=0x7ffc00eed008, options=options@entry=0, usage=usage@entry=0x0) at ../sysdeps/unix/sysv/linux/wait4.c:27
+        resultvar = 18446744073709551104
+        sc_cancel_oldtype = 0
+        sc_ret = <optimised out>
+#1  0x00007fe875b11d7b in __GI___waitpid (pid=<optimised out>, stat_loc=stat_loc@entry=0x7ffc00eed008, options=options@entry=0) at waitpid.c:38
+No locals.
+#2  0x00007fe875a810e7 in do_system (line=<optimised out>) at ../sysdeps/posix/system.c:172
+        __result = <optimised out>
+        _buffer = {__routine = 0x7fe875a81290 <cancel_handler>, __arg = 0x7ffc00eed010, __canceltype = 0, __prev = 0x0}
+        _avail = 1
+        cancel_args = {quit = 0x7fe875c1a200 <quit>, intr = 0x7fe875c1a2a0 <intr>, pid = 18654}
+        status = -1
+        ret = 0
+        pid = 18654
+        sa = {__sigaction_handler = {sa_handler = 0x1, sa_sigaction = 0x1}, sa_mask = {__val = {65536, 0 <repeats 15 times>}}, sa_flags = 0, sa_restorer = 0x7fa00000ffffffff}
+        omask = {__val = {1024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 140720324138144, 140720324138243, 9196350441231745024, 140720324138243, 2676586395008836901, 2676586395008836901}}
+        reset = {__val = {6, 0 <repeats 15 times>}}
+        spawn_attr = {__flags = 12, __pgrp = 0, __sd = {__val = {6, 0 <repeats 15 times>}}, __ss = {__val = {1024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 140720324138144, 140720324138243, 9196350441231745024, 140720324138243, 2676586395008836901, 2676586395008836901}}, __sp = {sched_priority = 0}, __policy = 0, __pad = {0 <repeats 16 times>}}
+        __cnt = <optimised out>
+        __set = <optimised out>
+        __cnt = <optimised out>
+        __set = <optimised out>
+#3  0x00005577709caf61 in AP_HAL::dump_stack_trace () at ../../libraries/AP_HAL_SITL/system.cpp:100
+        dumpstack = 0x557770b1072d "Tools/scripts/dumpstack.sh"
+        statbuf = {st_dev = 2053, st_ino = 1576670, st_nlink = 1, st_mode = 33277, st_uid = 1000, st_gid = 1000, __pad0 = 0, st_rdev = 0, st_size = 265, st_blksize = 4096, st_blocks = 8, st_atim = {tv_sec = 1618851063, tv_nsec = 59028501}, st_mtim = {tv_sec = 1602855678, tv_nsec = 646404595}, st_ctim = {tv_sec = 1602855678, tv_nsec = 646404595}, __glibc_reserved = {0, 0, 0}}
+        paths = {0x557770b1072d "Tools/scripts/dumpstack.sh", 0x557770b10748 "APM/Tools/scripts/dumpstack.sh", 0x557770b10767 "../Tools/scripts/dumpstack.sh"}
+        cmd = "sh Tools/scripts/dumpstack.sh 18431 >dumpstack_arducopter.18431.ou 2>&1\000\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177"
+        progname = "/home/denis/ardupilot/build/sitl/bin\000arducopter\000\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177"
+        p = 0x7ffc00eed534 ""
+        n = 47
+        output_filepath = "dumpstack_arducopter.18431.ou"
+        fd = 2141192192
+        buf = "\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177"...
+#4  0x00005577709cbca0 in _sig_segv (signum=11) at ../../libraries/AP_HAL_SITL/SITL_cmdline.cpp:61
+No locals.
+#5  <signal handler called>
+No locals.
+#6  0x0000557770832b36 in AC_Trick::set_fig_from_cmd (this=0x0, trick=2) at ../../libraries/AC_WPNav/AC_Trick.h:22
+No locals.
+#7  0x0000557770835bf8 in ModeAuto::do_trick (this=0x557770bd7c10 <copter+24624>, cmd=...) at ../../ArduCopter/mode_auto.cpp:1451
+        target_loc = {relative_alt = 0 '\000', loiter_ccw = 0 '\000', terrain_alt = 0 '\000', origin_alt = 0 '\000', loiter_xtrack = 0 '\000', alt = 2000, lat = 376185080, lng = -1223781250, static _terrain = 0x557770bd7050 <copter+21616>, static LOCATION_SCALING_FACTOR = 0.0111318845, static LOCATION_SCALING_FACTOR_INV = 89.8320465}
+        trick = 2
+#8  0x0000557770833a7d in ModeAuto::start_command (this=0x557770bd7c10 <copter+24624>, cmd=...) at ../../ArduCopter/mode_auto.cpp:474
+No locals.
+#9  0x000055777082051d in Functor<bool, AP_Mission::Mission_Command const&>::method_wrapper<ModeAuto, &ModeAuto::start_command> (obj=0x557770bd7c10 <copter+24624>, args#0=...) at ../../libraries/AP_HAL/utility/functor.h:88
+        t = 0x557770bd7c10 <copter+24624>
+#10 0x00005577708aaf93 in Functor<bool, AP_Mission::Mission_Command const&>::operator() (this=0x557770bd7cb0 <copter+24784>, args#0=...) at ../../libraries/AP_HAL/utility/functor.h:54
+No locals.
+#11 0x00005577708a722c in AP_Mission::start_command (this=0x557770bd7c90 <copter+24752>, cmd=...) at ../../libraries/AP_Mission/AP_Mission.cpp:333
+No locals.
+#12 0x00005577708a9d54 in AP_Mission::advance_current_nav_cmd (this=0x557770bd7c90 <copter+24752>, starting_index=0) at ../../libraries/AP_Mission/AP_Mission.cpp:1658
+        cmd = {index = 1, id = 26, p1 = 2, content = {jump = {target = 0, num_times = 0}, delay = {seconds = 0}, distance = {meters = 0}, yaw = {angle_deg = 0, turn_rate_dps = 2.80259693e-42, direction = -8 '\370', relative_angle = 32 ' '}, speed = {speed_type = 0 '\000', target_ms = -8.58993459e+09, throttle_pct = -1.03846024e+34}, relay = {num = 0 '\000', state = 0 '\000'}, repeat_relay = {num = 0 '\000', repeat_count = 0, cycle_time = 7.17464814e-40}, servo = {channel = 0 '\000', pwm = 0}, repeat_servo = {channel = 0 '\000', pwm = 0, repeat_count = -12288, cycle_time = -1.03846024e+34}, mount_control = {pitch = 0, roll = 2.80259693e-42, yaw = 1.90743313e-25}, digicam_configure = {shooting_mode = 0 '\000', shutter_speed = 0, aperture = 0 '\000', ISO = 2000, exposure_type = 0 '\000', cmd_id = 0 '\000', engine_cutoff_time = 1.90743313e-25}, digicam_control = {session = 0 '\000', zoom_pos = 0 '\000', zoom_step = 0 '\000', focus_lock = 0 '\000', shooting_cmd = 208 '\320', cmd_id = 7 '\a'}, cam_trigg_dist = {meters = 0, trigger = 208 '\320'}, gripper = {num = 0 '\000', action = 0 '\000'}, guided_limits = {alt_min = 0, alt_max = 2.80259693e-42, horiz_max = 1.90743313e-25}, altitude_wait = {altitude = 0, descent_rate = 2.80259693e-42, wiggle_time = 248 '\370'}, do_vtol_transition = {target_state = 0 '\000'}, do_engine_control = {start_control = false, cold_start = false, height_delay_cm = 0}, nav_delay = {seconds = 0, hour_utc = -48 '\320', min_utc = 7 '\a', sec_utc = 0 '\000'}, set_yaw_speed = {angle_deg = 0, speed = 2.80259693e-42, relative_angle = 248 '\370'}, winch = {num = 0 '\000', action = 0 '\000', release_length = 3.12963616e-34, release_rate = 4.20128342e-19}, location = {relative_alt = 0 '\000', loiter_ccw = 0 '\000', terrain_alt = 0 '\000', origin_alt = 0 '\000', loiter_xtrack = 0 '\000', alt = 2000, lat = 376185080, lng = -1223781250, static _terrain = 0x557770bd7050 <copter+21616>, static LOCATION_SCALING_FACTOR = 0.0111318845, static LOCATION_SCALING_FACTOR_INV = 89.8320465}}}
+        cmd_index = 1
+        max_loops = 255 '\377'
+#13 0x00005577708a6963 in AP_Mission::start (this=0x557770bd7c90 <copter+24752>) at ../../libraries/AP_Mission/AP_Mission.cpp:73
+No locals.
+#14 0x00005577708a69fd in AP_Mission::resume (this=0x557770bd7c90 <copter+24752>) at ../../libraries/AP_Mission/AP_Mission.cpp:101
+No locals.
+#15 0x00005577708a6d4f in AP_Mission::start_or_resume (this=0x557770bd7c90 <copter+24752>) at ../../libraries/AP_Mission/AP_Mission.cpp:187
+No locals.
+#16 0x0000557770832e0e in ModeAuto::init (this=0x557770bd7c10 <copter+24624>, ignore_checks=false) at ../../ArduCopter/mode_auto.cpp:50
+        loc = {relative_alt = 0 '\000', loiter_ccw = 0 '\000', terrain_alt = 0 '\000', origin_alt = 0 '\000', loiter_xtrack = 0 '\000', alt = 534, lat = 376193729, lng = -1223766370, static _terrain = 0x557770bd7050 <copter+21616>, static LOCATION_SCALING_FACTOR = 0.0111318845, static LOCATION_SCALING_FACTOR_INV = 89.8320465}
+#17 0x000055777082f6c9 in Copter::set_mode (this=0x557770bd1be0 <copter>, mode=Mode::Number::AUTO, reason=ModeReason::GCS_COMMAND) at ../../ArduCopter/mode.cpp:265
+        new_flightmode = 0x557770bd7c10 <copter+24624>
+        ignore_checks = false
+        user_throttle = false
+#18 0x000055777082f8a4 in Copter::set_mode (this=0x557770bd1be0 <copter>, new_mode=3 '\003', reason=ModeReason::GCS_COMMAND) at ../../ArduCopter/mode.cpp:315
+No locals.
+#19 0x00005577708f1141 in GCS_MAVLINK::_set_mode_common (this=0x557770deca10, _base_mode=1, _custom_mode=3) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:2167
+        result = MAV_RESULT_UNSUPPORTED
+#20 0x00005577708f499d in GCS_MAVLINK::handle_command_do_set_mode (this=0x557770deca10, packet=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:3690
+        _base_mode = 1
+        _custom_mode = 3
+#21 0x00005577708f4ee9 in GCS_MAVLINK::handle_command_long_packet (this=0x557770deca10, packet=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:3810
+        result = MAV_RESULT_FAILED
+#22 0x0000557770823366 in GCS_MAVLINK_Copter::handle_command_long_packet (this=0x557770deca10, packet=...) at ../../ArduCopter/GCS_Mavlink.cpp:924
+No locals.
+#23 0x00005577708f5546 in GCS_MAVLINK::handle_command_long (this=0x557770deca10, msg=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:4011
+        packet = {param1 = 1, param2 = 3, param3 = 0, param4 = 0, param5 = 0, param6 = 0, param7 = 0, command = 176, target_system = 1 '\001', target_component = 0 '\000', confirmation = 0 '\000'}
+        result = 2141192192
+        packet_int = {param1 = nan(0x200000), param2 = nan(0x200000), param3 = nan(0x200000), param4 = nan(0x200000), x = 2141192192, y = 2141192192, z = nan(0x200000), command = 0, target_system = 160 '\240', target_component = 127 '\177', frame = 0 '\000', current = 0 '\000', autocontinue = 160 '\240'}
+#24 0x00005577708f3b61 in GCS_MAVLINK::handle_common_message (this=0x557770deca10, msg=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:3240
+No locals.
+#25 0x000055777082444d in GCS_MAVLINK_Copter::handleMessage (this=0x557770deca10, msg=...) at ../../ArduCopter/GCS_Mavlink.cpp:1318
+        MAVLINK_SET_POS_TYPE_MASK_POS_IGNORE = 7
+        MAVLINK_SET_POS_TYPE_MASK_VEL_IGNORE = 56
+        MAVLINK_SET_POS_TYPE_MASK_ACC_IGNORE = 448
+        MAVLINK_SET_POS_TYPE_MASK_YAW_IGNORE = 1024
+        MAVLINK_SET_POS_TYPE_MASK_YAW_RATE_IGNORE = 2048
+#26 0x00005577708eede4 in GCS_MAVLINK::packetReceived (this=0x557770deca10, status=..., msg=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:1356
+No locals.
+#27 0x00005577708224a7 in GCS_MAVLINK_Copter::packetReceived (this=0x557770deca10, status=..., msg=...) at ../../ArduCopter/GCS_Mavlink.cpp:514
+No locals.
+#28 0x00005577708ef0ac in GCS_MAVLINK::update_receive (this=0x557770deca10, max_time_us=1000) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:1410
+        c = 163 '\243'
+        protocol_timeout = 4000
+        parsed_packet = false
+        i = 42
+        msg = {checksum = 41895, magic = 253 '\375', len = 31 '\037', incompat_flags = 0 '\000', compat_flags = 0 '\000', seq = 106 'j', sysid = 255 '\377', compid = 230 '\346', msgid = 76, payload64 = {4629700418002223104, 0, 0, 282230890954752, 4294967296, 0 <repeats 28 times>}, ck = "\247\243", signature = '\000' <repeats 12 times>}
+        status = {msg_received = 0 '\000', buffer_overrun = 0 '\000', parse_error = 160 '\240', parse_state = MAVLINK_PARSE_STATE_IDLE, packet_idx = 31 '\037', current_rx_seq = 107 'k', current_tx_seq = 160 '\240', packet_rx_success_count = 107, packet_rx_drop_count = 0, flags = 0 '\000', signature_wait = 0 '\000', signing = 0x7fa000007fa00000, signing_streams = 0x7fa000007fa00000}
+        tstart_us = 82778542
+        now_ms = 82778
+        nbytes = 43
+        tnow = 2141192192
+#29 0x00005577708f0b4c in GCS::update_receive (this=0x557770bd64d0 <copter+18672>) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:2040
+        i = 0 '\000'
+#30 0x000055777082018d in Functor<void>::method_wrapper<GCS, &GCS::update_receive> (obj=0x557770bd64d0 <copter+18672>) at ../../libraries/AP_HAL/utility/functor.h:88
+        t = 0x557770bd64d0 <copter+18672>
+#31 0x00005577708aafba in Functor<void>::operator() (this=0x557770bb10c0 <Copter::scheduler_tasks+992>) at ../../libraries/AP_HAL/utility/functor.h:54
+No locals.
+#32 0x00005577708c6eea in AP_Scheduler::run (this=0x557770bd1e48 <copter+616>, time_available=2500) at ../../libraries/AP_Scheduler/AP_Scheduler.cpp:211
+        dt = 1
+        interval_ticks = 1
+        overrun = false
+        task = @0x557770bb10c0: {function = {_obj = 0x557770bd64d0 <copter+18672>, _method = 0x557770820169 <Functor<void>::method_wrapper<GCS, &GCS::update_receive>(void*)>}, name = 0x557770aeab74 "GCS::update_receive", rate_hz = 400, max_time_micros = 180}
+        time_taken = 0
+        i = 31 '\037'
+        run_started_usec = 82778542
+        now = 82778542
+#33 0x00005577708c742e in AP_Scheduler::loop (this=0x557770bd1e48 <copter+616>) at ../../libraries/AP_Scheduler/AP_Scheduler.cpp:339
+        sample_time_us = 82778542
+        loop_us = 2500
+        now = 82778542
+        time_available = 2500
+        loop_tick_us = 0
+#34 0x00005577708cd0a0 in AP_Vehicle::loop (this=0x557770bd1be0 <copter>) at ../../libraries/AP_Vehicle/AP_Vehicle.cpp:131
+No locals.
+#35 0x00005577709bb501 in HAL_SITL::run (this=0x557770be4040 <AP_HAL::get_HAL()::hal>, argc=11, argv=0x7ffc00eee9b8, callbacks=0x557770bd1be0 <copter>) at ../../libraries/AP_HAL_SITL/HAL_SITL_Class.cpp:232
+        now = 82776
+        __PRETTY_FUNCTION__ = "virtual void HAL_SITL::run(int, char* const*, AP_HAL::HAL::Callbacks*) const"
+        new_argv_offset = 11 '\v'
+        using_watchdog = false
+        last_watchdog_save = 2515
+#36 0x000055777081f88a in main (argc=11, argv=0x7ffc00eee9b8) at ../../ArduCopter/Copter.cpp:658
+No locals.
+
+Thread 2 (Thread 0x7fe875a26700 (LWP 18484)):
+#0  0x00007fe875b0c3bf in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7fe875a25a60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:78
+        sc_cancel_oldtype = 0
+        sc_ret = <optimised out>
+        r = <optimised out>
+#1  0x00007fe875b12047 in __GI___nanosleep (requested_time=requested_time@entry=0x7fe875a25a60, remaining=remaining@entry=0x0) at nanosleep.c:27
+        ret = <optimised out>
+#2  0x00007fe875b449bf in usleep (useconds=<optimised out>) at ../sysdeps/posix/usleep.c:32
+        ts = {tv_sec = 0, tv_nsec = 1000000}
+#3  0x00005577709be2a7 in HALSITL::SITL_State::wait_clock (this=0x557770bdee40 <sitlState>, wait_time_usec=82778709) at ../../libraries/AP_HAL_SITL/SITL_State.cpp:209
+No locals.
+#4  0x00005577709c18c8 in HALSITL::Scheduler::delay_microseconds (this=0x557770be3560 <sitlScheduler>, usec=1000) at ../../libraries/AP_HAL_SITL/Scheduler.cpp:94
+        dtime = 0
+        start = 82777709
+#5  0x00005577709c190e in HALSITL::Scheduler::delay (this=0x557770be3560 <sitlScheduler>, ms=2) at ../../libraries/AP_HAL_SITL/Scheduler.cpp:103
+        start = 82777
+        now = 82777
+#6  0x0000557770aae848 in GCS_MAVLINK::ftp_worker (this=0x557770deca10) at ../../libraries/GCS_MAVLink/GCS_FTP.cpp:176
+        skip_push_reply = false
+        now = 2323
+        request = {offset = 0, chan = MAVLINK_COMM_0, seq_number = 4, opcode = GCS_MAVLINK::FTP_OP::TerminateSession, req_opcode = GCS_MAVLINK::FTP_OP::None, burst_complete = false, size = 0 '\000', session = 1 '\001', sysid = 255 '\377', compid = 230 '\346', data = '\000' <repeats 238 times>}
+        reply = {offset = 0, chan = MAVLINK_COMM_0, seq_number = 5, opcode = -128, req_opcode = GCS_MAVLINK::FTP_OP::TerminateSession, burst_complete = false, size = 0 '\000', session = 1 '\001', sysid = 255 '\377', compid = 230 '\346', data = '\000' <repeats 238 times>}
+#7  0x0000557770aafe70 in Functor<void>::method_wrapper<GCS_MAVLINK, &GCS_MAVLINK::ftp_worker> (obj=0x557770deca10) at ../../libraries/AP_HAL/utility/functor.h:88
+        t = 0x557770deca10
+#8  0x00005577708aafba in Functor<void>::operator() (this=0x557770df3250) at ../../libraries/AP_HAL/utility/functor.h:54
+No locals.
+#9  0x00005577709c1f94 in HALSITL::Scheduler::thread_create_trampoline (ctx=0x557770e04a40) at ../../libraries/AP_HAL_SITL/Scheduler.cpp:272
+        a = 0x557770e04a40
+        _getsem17 = {_mtx = @0x0}
+#10 0x00007fe875c27609 in start_thread (arg=<optimised out>) at pthread_create.c:477
+        ret = <optimised out>
+        pd = <optimised out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140636382717696, -8164592069569772738, 140720324140430, 140720324140431, 93971483216464, 140636382715840, 8169918409921954622, 8169918133749973822}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#11 0x00007fe875b4e293 in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 1 (Thread 0x7fe875a27740 (LWP 18431)):
+#0  0x00007fe875b11dff in __GI___wait4 (pid=18654, stat_loc=stat_loc@entry=0x7ffc00eed008, options=options@entry=0, usage=usage@entry=0x0) at ../sysdeps/unix/sysv/linux/wait4.c:27
+        resultvar = 18446744073709551104
+        sc_cancel_oldtype = 0
+        sc_ret = <optimised out>
+#1  0x00007fe875b11d7b in __GI___waitpid (pid=<optimised out>, stat_loc=stat_loc@entry=0x7ffc00eed008, options=options@entry=0) at waitpid.c:38
+No locals.
+#2  0x00007fe875a810e7 in do_system (line=<optimised out>) at ../sysdeps/posix/system.c:172
+        __result = <optimised out>
+        _buffer = {__routine = 0x7fe875a81290 <cancel_handler>, __arg = 0x7ffc00eed010, __canceltype = 0, __prev = 0x0}
+        _avail = 1
+        cancel_args = {quit = 0x7fe875c1a200 <quit>, intr = 0x7fe875c1a2a0 <intr>, pid = 18654}
+        status = -1
+        ret = 0
+        pid = 18654
+        sa = {__sigaction_handler = {sa_handler = 0x1, sa_sigaction = 0x1}, sa_mask = {__val = {65536, 0 <repeats 15 times>}}, sa_flags = 0, sa_restorer = 0x7fa00000ffffffff}
+        omask = {__val = {1024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 140720324138144, 140720324138243, 9196350441231745024, 140720324138243, 2676586395008836901, 2676586395008836901}}
+        reset = {__val = {6, 0 <repeats 15 times>}}
+        spawn_attr = {__flags = 12, __pgrp = 0, __sd = {__val = {6, 0 <repeats 15 times>}}, __ss = {__val = {1024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 9196350441231745024, 140720324138144, 140720324138243, 9196350441231745024, 140720324138243, 2676586395008836901, 2676586395008836901}}, __sp = {sched_priority = 0}, __policy = 0, __pad = {0 <repeats 16 times>}}
+        __cnt = <optimised out>
+        __set = <optimised out>
+        __cnt = <optimised out>
+        __set = <optimised out>
+#3  0x00005577709caf61 in AP_HAL::dump_stack_trace () at ../../libraries/AP_HAL_SITL/system.cpp:100
+        dumpstack = 0x557770b1072d "Tools/scripts/dumpstack.sh"
+        statbuf = {st_dev = 2053, st_ino = 1576670, st_nlink = 1, st_mode = 33277, st_uid = 1000, st_gid = 1000, __pad0 = 0, st_rdev = 0, st_size = 265, st_blksize = 4096, st_blocks = 8, st_atim = {tv_sec = 1618851063, tv_nsec = 59028501}, st_mtim = {tv_sec = 1602855678, tv_nsec = 646404595}, st_ctim = {tv_sec = 1602855678, tv_nsec = 646404595}, __glibc_reserved = {0, 0, 0}}
+        paths = {0x557770b1072d "Tools/scripts/dumpstack.sh", 0x557770b10748 "APM/Tools/scripts/dumpstack.sh", 0x557770b10767 "../Tools/scripts/dumpstack.sh"}
+        cmd = "sh Tools/scripts/dumpstack.sh 18431 >dumpstack_arducopter.18431.ou 2>&1\000\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177"
+        progname = "/home/denis/ardupilot/build/sitl/bin\000arducopter\000\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177"
+        p = 0x7ffc00eed534 ""
+        n = 47
+        output_filepath = "dumpstack_arducopter.18431.ou"
+        fd = 2141192192
+        buf = "\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177\000\000\240\177"...
+#4  0x00005577709cbca0 in _sig_segv (signum=11) at ../../libraries/AP_HAL_SITL/SITL_cmdline.cpp:61
+No locals.
+#5  <signal handler called>
+No locals.
+#6  0x0000557770832b36 in AC_Trick::set_fig_from_cmd (this=0x0, trick=2) at ../../libraries/AC_WPNav/AC_Trick.h:22
+No locals.
+#7  0x0000557770835bf8 in ModeAuto::do_trick (this=0x557770bd7c10 <copter+24624>, cmd=...) at ../../ArduCopter/mode_auto.cpp:1451
+        target_loc = {relative_alt = 0 '\000', loiter_ccw = 0 '\000', terrain_alt = 0 '\000', origin_alt = 0 '\000', loiter_xtrack = 0 '\000', alt = 2000, lat = 376185080, lng = -1223781250, static _terrain = 0x557770bd7050 <copter+21616>, static LOCATION_SCALING_FACTOR = 0.0111318845, static LOCATION_SCALING_FACTOR_INV = 89.8320465}
+        trick = 2
+#8  0x0000557770833a7d in ModeAuto::start_command (this=0x557770bd7c10 <copter+24624>, cmd=...) at ../../ArduCopter/mode_auto.cpp:474
+No locals.
+#9  0x000055777082051d in Functor<bool, AP_Mission::Mission_Command const&>::method_wrapper<ModeAuto, &ModeAuto::start_command> (obj=0x557770bd7c10 <copter+24624>, args#0=...) at ../../libraries/AP_HAL/utility/functor.h:88
+        t = 0x557770bd7c10 <copter+24624>
+#10 0x00005577708aaf93 in Functor<bool, AP_Mission::Mission_Command const&>::operator() (this=0x557770bd7cb0 <copter+24784>, args#0=...) at ../../libraries/AP_HAL/utility/functor.h:54
+No locals.
+#11 0x00005577708a722c in AP_Mission::start_command (this=0x557770bd7c90 <copter+24752>, cmd=...) at ../../libraries/AP_Mission/AP_Mission.cpp:333
+No locals.
+#12 0x00005577708a9d54 in AP_Mission::advance_current_nav_cmd (this=0x557770bd7c90 <copter+24752>, starting_index=0) at ../../libraries/AP_Mission/AP_Mission.cpp:1658
+        cmd = {index = 1, id = 26, p1 = 2, content = {jump = {target = 0, num_times = 0}, delay = {seconds = 0}, distance = {meters = 0}, yaw = {angle_deg = 0, turn_rate_dps = 2.80259693e-42, direction = -8 '\370', relative_angle = 32 ' '}, speed = {speed_type = 0 '\000', target_ms = -8.58993459e+09, throttle_pct = -1.03846024e+34}, relay = {num = 0 '\000', state = 0 '\000'}, repeat_relay = {num = 0 '\000', repeat_count = 0, cycle_time = 7.17464814e-40}, servo = {channel = 0 '\000', pwm = 0}, repeat_servo = {channel = 0 '\000', pwm = 0, repeat_count = -12288, cycle_time = -1.03846024e+34}, mount_control = {pitch = 0, roll = 2.80259693e-42, yaw = 1.90743313e-25}, digicam_configure = {shooting_mode = 0 '\000', shutter_speed = 0, aperture = 0 '\000', ISO = 2000, exposure_type = 0 '\000', cmd_id = 0 '\000', engine_cutoff_time = 1.90743313e-25}, digicam_control = {session = 0 '\000', zoom_pos = 0 '\000', zoom_step = 0 '\000', focus_lock = 0 '\000', shooting_cmd = 208 '\320', cmd_id = 7 '\a'}, cam_trigg_dist = {meters = 0, trigger = 208 '\320'}, gripper = {num = 0 '\000', action = 0 '\000'}, guided_limits = {alt_min = 0, alt_max = 2.80259693e-42, horiz_max = 1.90743313e-25}, altitude_wait = {altitude = 0, descent_rate = 2.80259693e-42, wiggle_time = 248 '\370'}, do_vtol_transition = {target_state = 0 '\000'}, do_engine_control = {start_control = false, cold_start = false, height_delay_cm = 0}, nav_delay = {seconds = 0, hour_utc = -48 '\320', min_utc = 7 '\a', sec_utc = 0 '\000'}, set_yaw_speed = {angle_deg = 0, speed = 2.80259693e-42, relative_angle = 248 '\370'}, winch = {num = 0 '\000', action = 0 '\000', release_length = 3.12963616e-34, release_rate = 4.20128342e-19}, location = {relative_alt = 0 '\000', loiter_ccw = 0 '\000', terrain_alt = 0 '\000', origin_alt = 0 '\000', loiter_xtrack = 0 '\000', alt = 2000, lat = 376185080, lng = -1223781250, static _terrain = 0x557770bd7050 <copter+21616>, static LOCATION_SCALING_FACTOR = 0.0111318845, static LOCATION_SCALING_FACTOR_INV = 89.8320465}}}
+        cmd_index = 1
+        max_loops = 255 '\377'
+#13 0x00005577708a6963 in AP_Mission::start (this=0x557770bd7c90 <copter+24752>) at ../../libraries/AP_Mission/AP_Mission.cpp:73
+No locals.
+#14 0x00005577708a69fd in AP_Mission::resume (this=0x557770bd7c90 <copter+24752>) at ../../libraries/AP_Mission/AP_Mission.cpp:101
+No locals.
+#15 0x00005577708a6d4f in AP_Mission::start_or_resume (this=0x557770bd7c90 <copter+24752>) at ../../libraries/AP_Mission/AP_Mission.cpp:187
+No locals.
+#16 0x0000557770832e0e in ModeAuto::init (this=0x557770bd7c10 <copter+24624>, ignore_checks=false) at ../../ArduCopter/mode_auto.cpp:50
+        loc = {relative_alt = 0 '\000', loiter_ccw = 0 '\000', terrain_alt = 0 '\000', origin_alt = 0 '\000', loiter_xtrack = 0 '\000', alt = 534, lat = 376193729, lng = -1223766370, static _terrain = 0x557770bd7050 <copter+21616>, static LOCATION_SCALING_FACTOR = 0.0111318845, static LOCATION_SCALING_FACTOR_INV = 89.8320465}
+#17 0x000055777082f6c9 in Copter::set_mode (this=0x557770bd1be0 <copter>, mode=Mode::Number::AUTO, reason=ModeReason::GCS_COMMAND) at ../../ArduCopter/mode.cpp:265
+        new_flightmode = 0x557770bd7c10 <copter+24624>
+        ignore_checks = false
+        user_throttle = false
+#18 0x000055777082f8a4 in Copter::set_mode (this=0x557770bd1be0 <copter>, new_mode=3 '\003', reason=ModeReason::GCS_COMMAND) at ../../ArduCopter/mode.cpp:315
+No locals.
+#19 0x00005577708f1141 in GCS_MAVLINK::_set_mode_common (this=0x557770deca10, _base_mode=1, _custom_mode=3) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:2167
+        result = MAV_RESULT_UNSUPPORTED
+#20 0x00005577708f499d in GCS_MAVLINK::handle_command_do_set_mode (this=0x557770deca10, packet=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:3690
+        _base_mode = 1
+        _custom_mode = 3
+#21 0x00005577708f4ee9 in GCS_MAVLINK::handle_command_long_packet (this=0x557770deca10, packet=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:3810
+        result = MAV_RESULT_FAILED
+#22 0x0000557770823366 in GCS_MAVLINK_Copter::handle_command_long_packet (this=0x557770deca10, packet=...) at ../../ArduCopter/GCS_Mavlink.cpp:924
+No locals.
+#23 0x00005577708f5546 in GCS_MAVLINK::handle_command_long (this=0x557770deca10, msg=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:4011
+        packet = {param1 = 1, param2 = 3, param3 = 0, param4 = 0, param5 = 0, param6 = 0, param7 = 0, command = 176, target_system = 1 '\001', target_component = 0 '\000', confirmation = 0 '\000'}
+        result = 2141192192
+        packet_int = {param1 = nan(0x200000), param2 = nan(0x200000), param3 = nan(0x200000), param4 = nan(0x200000), x = 2141192192, y = 2141192192, z = nan(0x200000), command = 0, target_system = 160 '\240', target_component = 127 '\177', frame = 0 '\000', current = 0 '\000', autocontinue = 160 '\240'}
+#24 0x00005577708f3b61 in GCS_MAVLINK::handle_common_message (this=0x557770deca10, msg=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:3240
+No locals.
+#25 0x000055777082444d in GCS_MAVLINK_Copter::handleMessage (this=0x557770deca10, msg=...) at ../../ArduCopter/GCS_Mavlink.cpp:1318
+        MAVLINK_SET_POS_TYPE_MASK_POS_IGNORE = 7
+        MAVLINK_SET_POS_TYPE_MASK_VEL_IGNORE = 56
+        MAVLINK_SET_POS_TYPE_MASK_ACC_IGNORE = 448
+        MAVLINK_SET_POS_TYPE_MASK_YAW_IGNORE = 1024
+        MAVLINK_SET_POS_TYPE_MASK_YAW_RATE_IGNORE = 2048
+#26 0x00005577708eede4 in GCS_MAVLINK::packetReceived (this=0x557770deca10, status=..., msg=...) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:1356
+No locals.
+#27 0x00005577708224a7 in GCS_MAVLINK_Copter::packetReceived (this=0x557770deca10, status=..., msg=...) at ../../ArduCopter/GCS_Mavlink.cpp:514
+No locals.
+#28 0x00005577708ef0ac in GCS_MAVLINK::update_receive (this=0x557770deca10, max_time_us=1000) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:1410
+        c = 163 '\243'
+        protocol_timeout = 4000
+        parsed_packet = false
+        i = 42
+        msg = {checksum = 41895, magic = 253 '\375', len = 31 '\037', incompat_flags = 0 '\000', compat_flags = 0 '\000', seq = 106 'j', sysid = 255 '\377', compid = 230 '\346', msgid = 76, payload64 = {4629700418002223104, 0, 0, 282230890954752, 4294967296, 0 <repeats 28 times>}, ck = "\247\243", signature = '\000' <repeats 12 times>}
+        status = {msg_received = 0 '\000', buffer_overrun = 0 '\000', parse_error = 160 '\240', parse_state = MAVLINK_PARSE_STATE_IDLE, packet_idx = 31 '\037', current_rx_seq = 107 'k', current_tx_seq = 160 '\240', packet_rx_success_count = 107, packet_rx_drop_count = 0, flags = 0 '\000', signature_wait = 0 '\000', signing = 0x7fa000007fa00000, signing_streams = 0x7fa000007fa00000}
+        tstart_us = 82778542
+        now_ms = 82778
+        nbytes = 43
+        tnow = 2141192192
+#29 0x00005577708f0b4c in GCS::update_receive (this=0x557770bd64d0 <copter+18672>) at ../../libraries/GCS_MAVLink/GCS_Common.cpp:2040
+        i = 0 '\000'
+#30 0x000055777082018d in Functor<void>::method_wrapper<GCS, &GCS::update_receive> (obj=0x557770bd64d0 <copter+18672>) at ../../libraries/AP_HAL/utility/functor.h:88
+        t = 0x557770bd64d0 <copter+18672>
+#31 0x00005577708aafba in Functor<void>::operator() (this=0x557770bb10c0 <Copter::scheduler_tasks+992>) at ../../libraries/AP_HAL/utility/functor.h:54
+No locals.
+#32 0x00005577708c6eea in AP_Scheduler::run (this=0x557770bd1e48 <copter+616>, time_available=2500) at ../../libraries/AP_Scheduler/AP_Scheduler.cpp:211
+        dt = 1
+        interval_ticks = 1
+        overrun = false
+        task = @0x557770bb10c0: {function = {_obj = 0x557770bd64d0 <copter+18672>, _method = 0x557770820169 <Functor<void>::method_wrapper<GCS, &GCS::update_receive>(void*)>}, name = 0x557770aeab74 "GCS::update_receive", rate_hz = 400, max_time_micros = 180}
+        time_taken = 0
+        i = 31 '\037'
+        run_started_usec = 82778542
+        now = 82778542
+#33 0x00005577708c742e in AP_Scheduler::loop (this=0x557770bd1e48 <copter+616>) at ../../libraries/AP_Scheduler/AP_Scheduler.cpp:339
+        sample_time_us = 82778542
+        loop_us = 2500
+        now = 82778542
+        time_available = 2500
+        loop_tick_us = 0
+#34 0x00005577708cd0a0 in AP_Vehicle::loop (this=0x557770bd1be0 <copter>) at ../../libraries/AP_Vehicle/AP_Vehicle.cpp:131
+No locals.
+#35 0x00005577709bb501 in HAL_SITL::run (this=0x557770be4040 <AP_HAL::get_HAL()::hal>, argc=11, argv=0x7ffc00eee9b8, callbacks=0x557770bd1be0 <copter>) at ../../libraries/AP_HAL_SITL/HAL_SITL_Class.cpp:232
+        now = 82776
+        __PRETTY_FUNCTION__ = "virtual void HAL_SITL::run(int, char* const*, AP_HAL::HAL::Callbacks*) const"
+        new_argv_offset = 11 '\v'
+        using_watchdog = false
+        last_watchdog_save = 2515
+#36 0x000055777081f88a in main (argc=11, argv=0x7ffc00eee9b8) at ../../ArduCopter/Copter.cpp:658
+No locals.
+A debugging session is active.
+
+	Inferior 1 [process 18431] will be detached.
+
+Quit anyway? (y or n) [answered Y; input not from terminal]
+[Inferior 1 (process 18431) detached]

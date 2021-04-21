@@ -792,9 +792,6 @@ MAV_MISSION_RESULT AP_Mission::sanity_check_params(const mavlink_mission_item_in
     case MAV_CMD_NAV_VTOL_LAND:
         nan_mask = ~((1 << 2) | (1 << 3)); // param 3 and 4 can be nan
         break;
-/*    case MAV_CMD_NAV_TRICK:
-        nan_mask = ~(1 << 0); //param 2 3 4 can be nan
-        break;*/
     default:
         nan_mask = 0xff;
         break;
@@ -895,8 +892,9 @@ MAV_MISSION_RESULT AP_Mission::mavlink_int_to_mission_cmd(const mavlink_mission_
         cmd.p1 = packet.param1;                         // minimum pitch (plane only)
         break;
         
-    case MAV_CMD_NAV_TRICK:                              //MAV ID: 26
-        cmd.p1 = fabsf(packet.param1);                  //contiene la mia figura
+    case MAV_CMD_NAV_TRICK: {                             //MAV ID: 26
+        uint16_t trick = fabsf(packet.param1);
+        cmd.p1 = trick;      }                           //contiene la mia figura
         break;
 
     case MAV_CMD_NAV_CONTINUE_AND_CHANGE_ALT:           // MAV ID: 30

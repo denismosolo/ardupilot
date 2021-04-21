@@ -22,7 +22,7 @@ public:
     // The increment will prevent old parameters from being used incorrectly
     // by newer code.
     //
-    static const uint16_t        k_format_version = 121;
+    static const uint16_t        k_format_version = 120;
 
     // Parameter identities.
     //
@@ -198,6 +198,8 @@ public:
         k_param_pos_control,
         k_param_circle_nav,
         k_param_loiter_nav,
+        k_param_trick_nav,
+  //      k_param_trick_trick,
 
         // 110: Telemetry control
         //

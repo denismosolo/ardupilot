@@ -19,7 +19,7 @@ public:
     void init();
     
     ///prende la figura passata da mavlink e me la salva
-    //void set_fig_from_cmd(uint16_t trick) {_trick = trick;}
+    void set_fig_from_cmd(uint16_t trick);
     
     //esegue la mia figura, contiene la state machine
     void do_selected_figure();
@@ -27,8 +27,9 @@ public:
     //verifica se la figura è stata completata o meno
     bool trick_completed();
     
+    static const struct AP_Param::GroupInfo var_info[];
     
-//protected:
+protected:
     
     //references to inertial nav and ahrs libraris
     const AP_InertialNav&           _inav;
@@ -37,7 +38,8 @@ public:
     //const AP_Motors&                _motors;
     AC_AttitudeControl&             _attitude_control;
     
-    uint16_t _trick;
+    AP_Int16 _trick;
+    uint16_t _trick_;
     uint8_t n=0;
     bool complete;
 };

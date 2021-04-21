@@ -118,10 +118,6 @@ void ModeAuto::run()
     case Auto_Trick:
         trick_run();
         break;
-        
-   /* case Auto_TrickReachAltitude:
-        wp_run(); //update z controller?
-        break;*/
     }
 }
 
@@ -368,32 +364,8 @@ void ModeAuto::trick_start()
     _mode = Auto_Trick;
     
     //inizializzo il controller trick_nav
-    copter.trick_nav->init();   //se inizializzo qui la mia figura?
+    copter.trick_nav->init();
 }
-
-/*void ModeAuto::acro_altitude_check(const uint16_t& trick)
-{
-    float delta_altitude = copter.acro_nav->get_altitude_error();
-    if (delta_altitude > 200.0f) {
-        //set the state to move to the correct altitude
-        _mode = Auto_AcroReachAltitude;
-        
-        pos_control->shift_alt_target(delta_altitude);
-        
-        pos_control->update_z_controller();
-        
-    } else {
-        acro_start();
-    }
-}
-
-void ModeAuto::acro_start()
-{
-    _mode = Auto_Acro;
-    
-    //initialise acro controller -- in copter.h puntatore a acro_nav o similare
-    copter.acro_nav->init(); 
-}*/
 
 bool ModeAuto::is_landing() const
 {
@@ -491,10 +463,6 @@ bool ModeAuto::start_command(const AP_Mission::Mission_Command& cmd)
     case MAV_CMD_NAV_PAYLOAD_PLACE:              // 94 place at Waypoint
         do_payload_place(cmd);
         break;
-        
-/*    case MAV_CMD_NAV_ACRO:                      //26
-        do_acro(cmd);
-        break;*/
 
     //
     // conditional commands
@@ -1028,7 +996,7 @@ void ModeAuto::trick_run()
     //set motors to full range
     motors->set_desired_spool_state(AP_Motors::DesiredSpoolState::THROTTLE_UNLIMITED);
    
-    //potrei usare una funzione che a seconda della figura chiama la giusta state machine definita in AC_Acro.h
+    //eseguo la figura già salvata in AC_trick.h/cpp
     copter.trick_nav->do_selected_figure();
 }
 
@@ -1442,15 +1410,19 @@ void ModeAuto::do_nav_delay(const AP_Mission::Mission_Command& cmd)
 
 void ModeAuto::do_trick(const AP_Mission::Mission_Command& cmd)
 {
-    do_loiter_unlimited(cmd);   //dovrebbe permettermi di raggiungere la posizione voluta    
+    uint16_t trick = cmd.p1;
+    copter.trick_nav->set_fig_from_cmd(trick); //scrivi la figura da eseguire
     
-    //uint16_t trick = cmd.p1;
-    //copter.trick_nav->set_fig_from_cmd(trick); //scrivi la figura da eseguire
-    
-    trick_start();
-    
-    //controllo dell'altitudine
-   // acro_altitude_check(cmd.p1);
+    if(cmd.content.location.lat !=0 || cmd.content.location.lng != 0) {      //se è inserita una location
+        
+        const Location target_loc = terrain_adjusted_location(cmd);  //prendo la posizione dal pacchetto
+        //qui potrei inserire il controllo sulla quota
+        wp_start(target_loc);   //sfrutto il waypoint per raggiungerla
+    }
+    else {
+    //dovrei inserire un controllo sulla quota anche qui, ma su quella attuale
+        trick_start();  //altrimenti parto direttamente con il mio trick
+    }
 }
 
 /********************************************************************************/
@@ -1975,27 +1947,19 @@ bool ModeAuto::verify_nav_delay(const AP_Mission::Mission_Command& cmd)
     return false;
 }
 
+//verify_trick - controlla se abbiamo completato la figura
 bool ModeAuto::verify_trick(const AP_Mission::Mission_Command& cmd)
 {
     //ritorna subito se non abbiamo ancora raggiunto la destinazione
-    if(!copter.wp_nav->reached_wp_destination()) {
-        return false;
+    if(mode() == Auto_WP) {
+        if(!copter.wp_nav->reached_wp_destination()) {
+        //printf("\non ho raggiunto ancora la destinazione\n");
+           return false;
+        }
+        //mi preparo all'esecuzione della figura
+        trick_start();
     }
-    
     return copter.trick_nav->trick_completed();
 }
-
-/*bool ModeAuto::verify_acro(const AP_Mission::Mission_Command& cmd)
-{
-    //check if we reached the min altitude
-    if (mode() == Auto_AcroReachAltitude) {
-        if (copter.acro_nav->get_altitude_error() < 200.0f) {
-            acro_start();   //rischia di passare a start mentre sta ancora andando il pos_controller
-        }
-        return false;
-    }
-    //check if we have completed the figure
-    return copter.acro_nav->trick_completed();  //condizione da stabilire
-}*/
 
 #endif
