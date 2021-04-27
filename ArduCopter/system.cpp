@@ -623,7 +623,7 @@ void Copter::allocate_motors(void)
     AP_Param::load_object_from_eeprom(circle_nav, circle_nav->var_info);
 #endif
 
-    trick_nav = new AC_Trick(inertial_nav, *ahrs_view, *pos_control, *attitude_control);
+    trick_nav = new AC_Trick(inertial_nav, *ahrs_view, *pos_control, *attitude_control, *motors, aparm);
     if (trick_nav == nullptr) {
         AP_HAL::panic("Unable to allocate TrickNav");
     }
