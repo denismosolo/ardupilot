@@ -993,10 +993,10 @@ void ModeAuto::loiter_to_alt_run()
 
 void ModeAuto::trick_run()
 {
-    //set motors to full range
+    //permetto l'utilizzo a piena potena dei motori
     motors->set_desired_spool_state(AP_Motors::DesiredSpoolState::THROTTLE_UNLIMITED);
    
-    //eseguo la figura già salvata in AC_trick.h/cpp
+    //eseguo la figura già salvata in AC_trick
     copter.trick_nav->do_selected_figure();
 }
 
@@ -1183,6 +1183,9 @@ void ModeAuto::do_nav_wp(const AP_Mission::Mission_Command& cmd)
                 if ((temp_cmd.content.location.lat != 0) || (temp_cmd.content.location.lng != 0)) {
                     fast_waypoint = true;
                 }
+                break;
+            case MAV_CMD_NAV_TRICK:
+                fast_waypoint = true;
                 break;
             case MAV_CMD_NAV_RETURN_TO_LAUNCH:
                 // do not stop for RTL
@@ -1410,18 +1413,20 @@ void ModeAuto::do_nav_delay(const AP_Mission::Mission_Command& cmd)
 
 void ModeAuto::do_trick(const AP_Mission::Mission_Command& cmd)
 {
+    //prelevo il parametro dal pacchetto
     uint16_t trick = cmd.p1;
-    copter.trick_nav->set_fig_from_cmd(trick); //scrivi la figura da eseguire
-    
-    if(cmd.content.location.lat !=0 || cmd.content.location.lng != 0) {      //se è inserita una location
-        
-        const Location target_loc = terrain_adjusted_location(cmd);  //prendo la posizione dal pacchetto
-        //qui potrei inserire il controllo sulla quota
-        wp_start(target_loc);   //sfrutto il waypoint per raggiungerla
+    //scrivo la figura da eseguire
+    copter.trick_nav->set_fig_from_cmd(trick);
+    //prendo la posizione dal pacchetto
+    Location target_loc = loc_from_cmd(cmd);
+    //se è inserita una posizione oppure ho modificato la quota
+    if(!copter.trick_nav->altitude_check(&target_loc.alt) || cmd.content.location.lat != 0 || cmd.content.location.lng != 0) {
+        //sfrutto il waypoint per raggiungerla
+        wp_start(target_loc);
     }
     else {
-    //dovrei inserire un controllo sulla quota anche qui, ma su quella attuale
-        trick_start();  //altrimenti parto direttamente con il mio trick
+        //altrimenti inizio direttamente il trick
+        trick_start();
     }
 }
 
@@ -1954,7 +1959,7 @@ bool ModeAuto::verify_trick(const AP_Mission::Mission_Command& cmd)
     if(mode() == Auto_WP) {
         if(!copter.wp_nav->reached_wp_destination()) {
         //printf("\non ho raggiunto ancora la destinazione\n");
-           return false;
+            return false;
         }
         //mi preparo all'esecuzione della figura
         trick_start();

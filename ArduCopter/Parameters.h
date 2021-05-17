@@ -198,8 +198,7 @@ public:
         k_param_pos_control,
         k_param_circle_nav,
         k_param_loiter_nav,
-        k_param_trick_nav,
-  //      k_param_trick_trick,
+        k_param_trick_nav,          //106
 
         // 110: Telemetry control
         //
